@@ -1064,10 +1064,15 @@ function startGame(){
     if(g.spawnT>=g.spawnInt){
       g.spawnT=0;
       const alive=g.enemies.filter(e=>!e.dead).length;
-      const maxAlive=Math.min(5,3+Math.floor(g.kills/25));
-      if(alive<maxAlive)spawnEnemy();
-      const base=Math.max(100,210-g.kills*2);
-      g.spawnInt=base*(0.6+Math.random()*0.9);
+      const maxAlive=Math.min(6,3+Math.floor(g.kills/20));
+      const room=maxAlive-alive;
+      if(room>0){
+        const r=Math.random();
+        const n=room>=3&&r<0.3?3:room>=2&&r<0.65?2:1;
+        for(let i=0;i<n;i++)spawnEnemy();
+      }
+      const base=Math.max(150,280-g.kills*2);
+      g.spawnInt=base*(0.7+Math.random()*0.7);
     }
 
     // Update projectiles
