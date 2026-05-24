@@ -235,9 +235,9 @@ canvas.addEventListener('mousemove',e=>{if(e.buttons)onDragMove(e.clientX,e.clie
 canvas.addEventListener('mouseleave',()=>blade=[]);
 canvas.addEventListener('mouseup',()=>blade=[]);
 const activeTouches={};
-canvas.addEventListener('touchstart',e=>{e.preventDefault();for(const t of e.changedTouches){const r=canvas.getBoundingClientRect();const x=(t.clientX-r.left)*(W/r.width),y=(t.clientY-r.top)*(H/r.height);activeTouches[t.identifier]={x,y};mx=x;my=y;}},{passive:false});
-canvas.addEventListener('touchmove',e=>{e.preventDefault();for(const t of e.changedTouches){if(activeTouches[t.identifier]!==undefined)onDragMove(t.clientX,t.clientY);}},{passive:false});
-canvas.addEventListener('touchend',e=>{e.preventDefault();for(const t of e.changedTouches)delete activeTouches[t.identifier];if(!Object.keys(activeTouches).length)blade=[];},{passive:false});
+canvas.addEventListener('touchstart',e=>{if(!g)return;e.preventDefault();for(const t of e.changedTouches){const r=canvas.getBoundingClientRect();const x=(t.clientX-r.left)*(W/r.width),y=(t.clientY-r.top)*(H/r.height);activeTouches[t.identifier]={x,y};mx=x;my=y;}},{passive:false});
+canvas.addEventListener('touchmove',e=>{if(!g)return;e.preventDefault();for(const t of e.changedTouches){if(activeTouches[t.identifier]!==undefined)onDragMove(t.clientX,t.clientY);}},{passive:false});
+canvas.addEventListener('touchend',e=>{if(!g)return;e.preventDefault();for(const t of e.changedTouches)delete activeTouches[t.identifier];if(!Object.keys(activeTouches).length)blade=[];},{passive:false});
 
 // ── User / Login ─────────────────────────────────────────────────
 let currentUser=null;
@@ -1209,23 +1209,23 @@ function startGame(){
     const ch=CHARS[g.charType];
     const fs=Math.round(W/15);
     ctx.shadowBlur=12;ctx.shadowColor=ch.theme;
-    ctx.fillStyle='#fff';ctx.font='bold '+fs+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
+    ctx.fillStyle='#fff';ctx.font='bold '+fs+'px Dela Gothic One,Noto Sans JP,sans-serif';
     ctx.textAlign='left';ctx.textBaseline='top';
     ctx.fillText(g.kills+' Kills',14,12);ctx.shadowBlur=0;
     ctx.font='15px serif';
     let hs='';for(let i=0;i<p.maxHp;i++)hs+=(i<p.hp?'❤️':'🖤');
     ctx.fillText(hs,14,16+fs);
-    ctx.fillStyle=ch.col;ctx.font=Math.round(W/26)+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
+    ctx.fillStyle=ch.col;ctx.font=Math.round(W/26)+'px Dela Gothic One,Noto Sans JP,sans-serif';
     ctx.textAlign='right';ctx.textBaseline='top';
     ctx.fillText(g.score+' Pkt.',W-14,14);
     // Char indicator
-    ctx.fillStyle=ch.theme;ctx.font='bold '+Math.round(W/30)+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
+    ctx.fillStyle=ch.theme;ctx.font='bold '+Math.round(W/30)+'px Dela Gothic One,Noto Sans JP,sans-serif';
     ctx.textAlign='right';ctx.textBaseline='top';
     ctx.fillText(ch.kanji+' '+ch.name,W-14,16+Math.round(W/26)+4);
 
     if(g.tick<260){
       ctx.globalAlpha=Math.min(1,(260-g.tick)/55);
-      ctx.fillStyle='rgba(255,200,100,.5)';ctx.font=Math.round(W/42)+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
+      ctx.fillStyle='rgba(255,200,100,.5)';ctx.font=Math.round(W/42)+'px Dela Gothic One,Noto Sans JP,sans-serif';
       ctx.textAlign='center';ctx.textBaseline='bottom';
       ctx.fillText('Ok tuşları = Hareket  ·  Sürükle = Vuruş',W/2,H-14);
       ctx.globalAlpha=1;
