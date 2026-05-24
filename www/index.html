@@ -916,7 +916,12 @@ function updateEnemyAI(e,p,dt){
 // ── SPAWN ─────────────────────────────────────────────────────────
 function spawnEnemy(){
   const sc=W/480,k=g.kills;
-  const type=k<8?ETYPES[0]:k<22?(Math.random()<.65?ETYPES[0]:ETYPES[1]):k<35?(Math.random()<.5?ETYPES[0]:Math.random()<.6?ETYPES[1]:ETYPES[2]):(Math.random()<.35?ETYPES[0]:Math.random()<.55?ETYPES[1]:ETYPES[2]);
+  const r=Math.random();
+  const ninjaW=Math.max(0.15,0.85-k*0.012);
+  const assW=Math.min(0.55,k*0.01);
+  const guardW=Math.max(0,Math.min(0.30,(k-20)*0.008));
+  const total=ninjaW+assW+guardW;
+  const type=r<ninjaW/total?ETYPES[0]:r<(ninjaW+assW)/total?ETYPES[1]:ETYPES[2];
   const margin=55;let x,y;
   const side=Math.floor(Math.random()*4);
   if(side===0){x=Math.random()*W;y=-margin;}
@@ -934,7 +939,7 @@ function newGameState(){
     slashR:ch.slashR*sc,
     player:{x:W/2,y:H/2,r:ch.r*sc,spd:ch.spd*sc,hp:ch.hp,maxHp:ch.hp,face:0,invT:0,walkT:0,moving:false,dashT:0,dashCool:0,dashVx:0,dashVy:0,trail:[]},
     enemies:[],particles:[],decals:[],projectiles:[],
-    kills:0,score:0,tick:0,spawnT:0,spawnInt:130,flash:0,shurikenT:0
+    kills:0,score:0,tick:0,spawnT:0,spawnInt:240,flash:0,shurikenT:0
   };
 }
 
@@ -1014,8 +1019,9 @@ function startGame(){
     if(g.spawnT>=g.spawnInt){
       g.spawnT=0;
       const alive=g.enemies.filter(e=>!e.dead).length;
-      if(alive<7){const n=Math.min(2,1+Math.floor(g.kills/18));for(let i=0;i<n;i++)spawnEnemy();}
-      g.spawnInt=Math.max(90,160-g.kills*2.2);
+      const maxAlive=Math.min(6,2+Math.floor(g.kills/20));
+      if(alive<maxAlive)spawnEnemy();
+      g.spawnInt=Math.max(120,240-g.kills*2);
     }
 
     // Update projectiles
