@@ -984,7 +984,7 @@ function newGameState(){
     slashR:ch.slashR*sc,
     player:{x:W/2,y:H/2,r:ch.r*sc,spd:ch.spd*sc,hp:ch.hp,maxHp:ch.hp,face:0,invT:0,walkT:0,moving:false,dashT:0,dashCool:0,dashVx:0,dashVy:0,trail:[]},
     enemies:[],particles:[],decals:[],projectiles:[],
-    kills:0,score:0,tick:0,spawnT:0,spawnInt:240,flash:0,shurikenT:0
+    kills:0,score:0,tick:0,spawnT:0,spawnInt:80,flash:0,shurikenT:0
   };
 }
 
@@ -1064,9 +1064,9 @@ function startGame(){
     if(g.spawnT>=g.spawnInt){
       g.spawnT=0;
       const alive=g.enemies.filter(e=>!e.dead).length;
-      const maxAlive=Math.min(5,2+Math.floor(g.kills/25));
+      const maxAlive=Math.min(5,3+Math.floor(g.kills/25));
       if(alive<maxAlive)spawnEnemy();
-      const base=Math.max(110,230-g.kills*2);
+      const base=Math.max(100,210-g.kills*2);
       g.spawnInt=base*(0.6+Math.random()*0.9);
     }
 
