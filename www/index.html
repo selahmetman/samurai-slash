@@ -367,7 +367,7 @@ const CHARS={
   hayabusa:{
     name:'HAYABUSA',kanji:'隼',title:'Falcon Ninja',
     desc:'Blitzschnell. Feuert automatisch Shuriken auf den nächsten Feind.',
-    spd:4.8,slashR:80,hp:3,r:19,
+    spd:4.8,slashR:145,hp:3,r:19,
     theme:'#cc44ff',col:'#00ffcc',eye:'#00ffcc',eye2:'#88ffee',
     stats:{spd:5,reach:2,hp:2,spc:5}
   },
@@ -1047,7 +1047,7 @@ function startGame(){
     // Shuriken (Hayabusa)
     if(g.charType==='hayabusa'){
       g.shurikenT+=dt;
-      if(g.shurikenT>=42&&g.projectiles.length<8){
+      if(g.shurikenT>=85&&g.projectiles.length<8){
         g.shurikenT=0;
         let nearest=null,nearDist=Infinity;
         for(const e of g.enemies){if(e.dead)continue;const dx=e.x-p.x,dy=e.y-p.y,d=dx*dx+dy*dy;if(d<nearDist){nearDist=d;nearest=e;}}
@@ -1142,7 +1142,7 @@ function startGame(){
 
     // Hayabusa shuriken charge arc
     if(g.charType==='hayabusa'){
-      const charge=Math.min(1,g.shurikenT/42);
+      const charge=Math.min(1,g.shurikenT/85);
       ctx.save();ctx.translate(p.x,p.y);
       ctx.strokeStyle=`rgba(0,255,200,${0.35+charge*.45})`;ctx.lineWidth=2;
       ctx.shadowBlur=6+charge*14;ctx.shadowColor='#00ffcc';
