@@ -1064,9 +1064,10 @@ function startGame(){
     if(g.spawnT>=g.spawnInt){
       g.spawnT=0;
       const alive=g.enemies.filter(e=>!e.dead).length;
-      const maxAlive=Math.min(6,2+Math.floor(g.kills/20));
-      if(alive<maxAlive)spawnEnemy();
-      g.spawnInt=Math.max(120,240-g.kills*2);
+      const maxAlive=Math.min(5,2+Math.floor(g.kills/25));
+      const toSpawn=Math.min(2,maxAlive-alive);
+      for(let i=0;i<toSpawn;i++)spawnEnemy();
+      g.spawnInt=Math.max(130,240-g.kills*2);
     }
 
     // Update projectiles
