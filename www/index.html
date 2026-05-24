@@ -6,23 +6,24 @@
 <title>Samurai Slash</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#060402;display:flex;align-items:center;justify-content:center;
-     height:100vh;overflow:hidden;user-select:none;font-family:'Cinzel','Noto Serif JP',serif;touch-action:none}
+     height:100vh;overflow:hidden;user-select:none;font-family:'Dela Gothic One','Noto Sans JP',sans-serif;touch-action:none}
 #wrap{position:relative}
 canvas{display:block;border-radius:14px;box-shadow:0 0 80px #cc110055,0 0 160px #88000033}
 #ov{position:absolute;inset:0;border-radius:14px;display:flex;flex-direction:column;
     align-items:center;justify-content:center;background:rgba(4,2,6,.95);backdrop-filter:blur(14px);
     overflow-y:auto}
-h1{color:#fff;font-size:36px;font-weight:900;letter-spacing:3px;margin:0;text-align:center;
+h1{color:#fff;font-size:34px;font-weight:900;letter-spacing:6px;margin:0;text-align:center;
+   font-family:'Dela Gothic One','Noto Sans JP',sans-serif;
    text-shadow:0 0 24px #cc2200,0 0 60px #880000}
 .pbtn{border:none;background:linear-gradient(135deg,#cc1100,#660000);color:#fff;
-      padding:13px 44px;font-size:19px;font-family:'Cinzel','Noto Serif JP',serif;font-weight:700;
+      padding:13px 44px;font-size:19px;font-family:'Dela Gothic One','Noto Sans JP',sans-serif;font-weight:700;
       border-radius:40px;cursor:pointer;box-shadow:0 0 30px #cc110066}
 .sbtn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#ccc;
-      padding:11px 24px;font-size:15px;font-family:'Cinzel','Noto Serif JP',serif;border-radius:40px;
+      padding:11px 24px;font-size:15px;font-family:'Dela Gothic One','Noto Sans JP',sans-serif;border-radius:40px;
       cursor:pointer;margin-left:10px}
 #dpad{position:absolute;bottom:22px;left:16px;display:none;
       grid-template-areas:'. u .' 'l . r' '. d .';
@@ -43,7 +44,7 @@ h1{color:#fff;font-size:36px;font-weight:900;letter-spacing:3px;margin:0;text-al
 /* ── IN-GAME MENU BUTTON ────────────────────────────── */
 #menuBtn{position:absolute;top:10px;left:50%;transform:translateX(-50%);display:none;
   border:1px solid rgba(255,255,255,.22);background:rgba(8,2,2,.82);color:rgba(255,200,140,.9);
-  padding:5px 20px;font-size:12px;font-family:'Cinzel','Noto Serif JP',serif;border-radius:20px;cursor:pointer;
+  padding:5px 20px;font-size:12px;font-family:'Dela Gothic One','Noto Sans JP',sans-serif;border-radius:20px;cursor:pointer;
   backdrop-filter:blur(6px);z-index:10;letter-spacing:1px;white-space:nowrap}
 #menuBtn:active{background:rgba(140,20,0,.85)}
 
@@ -56,7 +57,7 @@ h1{color:#fff;font-size:36px;font-weight:900;letter-spacing:3px;margin:0;text-al
 
 /* ── LOGIN PANEL ────────────────────────────────────── */
 .inp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:#fff;
-  padding:11px 18px;font-size:15px;font-family:'Cinzel','Noto Serif JP',serif;border-radius:8px;
+  padding:11px 18px;font-size:15px;font-family:'Dela Gothic One','Noto Sans JP',sans-serif;border-radius:8px;
   outline:none;width:240px;text-align:center;margin:4px 0}
 .inp::placeholder{color:#554433}
 .inp:focus{border-color:rgba(200,80,0,.65);box-shadow:0 0 14px rgba(180,40,0,.3)}
@@ -1208,23 +1209,23 @@ function startGame(){
     const ch=CHARS[g.charType];
     const fs=Math.round(W/15);
     ctx.shadowBlur=12;ctx.shadowColor=ch.theme;
-    ctx.fillStyle='#fff';ctx.font='bold '+fs+'px Cinzel,serif';
+    ctx.fillStyle='#fff';ctx.font='bold '+fs+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
     ctx.textAlign='left';ctx.textBaseline='top';
     ctx.fillText(g.kills+' Kills',14,12);ctx.shadowBlur=0;
     ctx.font='15px serif';
     let hs='';for(let i=0;i<p.maxHp;i++)hs+=(i<p.hp?'❤️':'🖤');
     ctx.fillText(hs,14,16+fs);
-    ctx.fillStyle=ch.col;ctx.font=Math.round(W/26)+'px Cinzel,serif';
+    ctx.fillStyle=ch.col;ctx.font=Math.round(W/26)+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
     ctx.textAlign='right';ctx.textBaseline='top';
     ctx.fillText(g.score+' Pkt.',W-14,14);
     // Char indicator
-    ctx.fillStyle=ch.theme;ctx.font='bold '+Math.round(W/30)+'px Cinzel,serif';
+    ctx.fillStyle=ch.theme;ctx.font='bold '+Math.round(W/30)+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
     ctx.textAlign='right';ctx.textBaseline='top';
     ctx.fillText(ch.kanji+' '+ch.name,W-14,16+Math.round(W/26)+4);
 
     if(g.tick<260){
       ctx.globalAlpha=Math.min(1,(260-g.tick)/55);
-      ctx.fillStyle='rgba(255,200,100,.5)';ctx.font=Math.round(W/42)+'px Cinzel,serif';
+      ctx.fillStyle='rgba(255,200,100,.5)';ctx.font=Math.round(W/42)+'px 'Dela Gothic One','Noto Sans JP',sans-serif';
       ctx.textAlign='center';ctx.textBaseline='bottom';
       ctx.fillText('Ok tuşları = Hareket  ·  Sürükle = Vuruş',W/2,H-14);
       ctx.globalAlpha=1;
