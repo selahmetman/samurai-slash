@@ -1,0 +1,23 @@
+{
+  "appId": "com.samuraislash.game",
+  "appName": "Samurai Slash",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#060402"
+  },
+  "ios": {
+    "backgroundColor": "#060402"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "backgroundColor": "#060402",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP"
+    }
+  }
+}
